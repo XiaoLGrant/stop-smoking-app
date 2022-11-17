@@ -5,10 +5,13 @@ module.exports = {
   getProfile: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
+      res.render("profile.ejs", {  });
     } catch (err) {
       console.log(err);
     }
+  },
+  getJournal: (req, res) => {
+    res.render("journal.ejs");
   },
   getFeed: async (req, res) => {
     try {
