@@ -3,9 +3,15 @@ const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
   userName: { type: String, unique: true },
+  name: String,
+  // Could get rid of userName if we don't want it, but I don't want to break the bub functionality just yet
   email: { type: String, unique: true },
   password: String,
+  dailyCigarettes: { type: Number, required: true },
+  dailyCost: { type: Number, required: true },
+  triggers: { type: Array, default: [] }
 });
+
 
 // Password hash middleware.
 
