@@ -5,8 +5,8 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1", 
-    "start": "concurrently \"nodemon app.js\" \"tailwindcss -i ./public/styles.css -o ./public/output.css --watch\" ",
-    "build":"tailwindcss -i ./public/styles.css -o ./public/output.css"
+    "start": "concurrently \"nodemon server.js\" \"tailwindcss -i ./public/css/style.css -o ./public/output.css --watch\" ",
+    "build":"tailwindcss -i ./public/css/style.css -o ./public/output.css"
 
   },
   "author": "",
