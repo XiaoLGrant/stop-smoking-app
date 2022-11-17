@@ -10,6 +10,9 @@ module.exports = {
       console.log(err);
     }
   },
+  getJournal: (req, res) => {
+    res.render("journal.ejs");
+  },
   getFeed: async (req, res) => {
     try {
       const posts = await Post.find().sort({ createdAt: "desc" }).lean();

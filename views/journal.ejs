@@ -1,0 +1,133 @@
+<%- include('partials/header') -%>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-6">
+            <div class="mt-5">
+              <h2>Add an Entry</h2>
+              <form action="/post/___PLACEHOLDER____" method="POST">
+                
+                <div class="mb-3">
+                    <fieldset>
+                        <legend>Did you smoke today?</legend>
+                        <input type="radio" id="smoked" name="smokedToday" value="true">
+                        <label for="smoked" class="form-label">Yes</label>
+                        <input type="radio" id="didNotSmoke" name="smokedToday" value="false">
+                        <label for="didNotSmoke" class="form-label">No</label>
+                    </fieldset>
+                </div>
+
+                <div class="mb-3">
+                    <fieldset>
+                        <label for="triggers" class="form-label">Select potential triggers:</label>
+                        <select class="form-control" id="triggers" name="triggers" multiple>
+                            <option>--Please choose one or more options</option>
+                            <option value="test">test1</option>
+                            <option value="test2">test2</option>
+                            <!-- Use ejs to loop through triggers listed during sign up and create option elements for each trigger -->
+                        </select>
+                        <label for="moreTriggers">Enter new trigger/s</label>
+                        <textarea class="form-control" id="moreTriggers" name="moreTriggers"></textarea>
+                    </fieldset>
+                </div>
+
+                <div class="mb-3">
+                    <!-- will need reformatting based on how we decide we want to handle moods -->
+                    <fieldset>
+                        <legend>How are you feeling today?</legend>
+                        <fieldset>
+                            <legend>Anxious</legend>
+                            <input type="radio" id="anxious1" name="anxietyLevel" value="1">
+                            <label for="anxious1" class="form-label">1</label>
+    
+                            <input type="radio" id="anxious2" name="anxietyLevel" value="2">
+                            <label for="anxious2" class="form-label">2</label>
+    
+                            <input type="radio" id="anxious3" name="anxietyLevel" value="3">
+                            <label for="anxious3" class="form-label">3</label>
+    
+                            <input type="radio" id="anxious4" name="anxietyLevel" value="4">
+                            <label for="anxious4" class="form-label">4</label>
+    
+                            <input type="radio" id="anxious5" name="canxietyLevel" value="5">
+                            <label for="anxious5" class="form-label">5</label>
+    
+                            <input type="radio" id="anxious6" name="anxietyLevel" value="6">
+                            <label for="anxious6" class="form-label">6</label>
+    
+                            <input type="radio" id="anxious7" name="anxietyLevel" value="7">
+                            <label for="anxious7" class="form-label">7</label>
+    
+                            <input type="radio" id="anxious8" name="anxietyLevel" value="8">
+                            <label for="anxious8" class="form-label">8</label>
+    
+                            <input type="radio" id="anxious9" name="anxietyLevel" value="9">
+                            <label for="anxious9" class="form-label">9</label>
+    
+                            <input type="radio" id="anxious10" name="anxietyLevel" value="10">
+                            <label for="anxious10" class="form-label">10</label>
+                        </fieldset>
+                        <fieldset>
+                            <legend>Mood2</legend>
+                        </fieldset>
+                    </fieldset>
+                </div>
+
+                <div class="mb-3">
+
+                </div>
+
+                <div class="mb-3">
+                    <!-- cravings scale currently set for 1-10 based on schema, might be better to use 1-5? -->
+                    <fieldset>
+                        <legend class="form-label">On a scale of 1 to 10, how badly do you want to smoke?</legend>
+                        <input type="radio" id="craving1" name="cravingsLevel" value="1">
+                        <label for="craving1" class="form-label">1</label>
+
+                        <input type="radio" id="craving2" name="cravingsLevel" value="2">
+                        <label for="craving2" class="form-label">2</label>
+
+                        <input type="radio" id="craving3" name="cravingsLevel" value="3">
+                        <label for="craving3" class="form-label">3</label>
+
+                        <input type="radio" id="craving4" name="cravingsLevel" value="4">
+                        <label for="craving4" class="form-label">4</label>
+
+                        <input type="radio" id="craving5" name="cravingsLevel" value="5">
+                        <label for="craving5" class="form-label">5</label>
+
+                        <input type="radio" id="craving6" name="cravingsLevel" value="6">
+                        <label for="craving6" class="form-label">6</label>
+
+                        <input type="radio" id="craving7" name="cravingsLevel" value="7">
+                        <label for="craving7" class="form-label">7</label>
+
+                        <input type="radio" id="craving8" name="cravingsLevel" value="8">
+                        <label for="craving8" class="form-label">8</label>
+
+                        <input type="radio" id="craving9" name="cravingsLevel" value="9">
+                        <label for="craving9" class="form-label">9</label>
+
+                        <input type="radio" id="craving10" name="cravingsLevel" value="10">
+                        <label for="craving10" class="form-label">10</label>
+
+                        <!-- if we'd rather use an input field for rating -->
+                        <!-- <input type="number" min="1" max="10" class="form-control" id="cravingsLevel" name="cravingsLevel"> -->
+                    </fieldset>
+                    
+                    
+                </div>
+                <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+              </form>
+            </div>
+        </div>
+
+        <div class="col-6">
+          <div class="row justify-content-center mt-5">
+            <a class="btn btn-primary" href="/profile">Return to Profile</a>
+          </div>  
+        </div>  
+      </div>
+    </div>
+  </div>
+
+<%- include('partials/footer') -%>
