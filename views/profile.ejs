@@ -3,15 +3,15 @@
   <div class="mx-auto max-w-screen-xl px-4 py-32 lg:h-screen">
       <div class="">
           <div>
-              <p><strong>User Name</strong>: <%= user.userName %></p>
-              <p><strong>Email</strong>: <%= user.email %></p>
+              <p class="text-center"><strong>User Name</strong>: <%= user.userName %></p>
+              <p class="text-center"><strong>Email</strong>: <%= user.email %></p>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
           <!-- TODAY'S MESSGAGE POPUP HERE -->
           <div class="msg"><%= message %></div>
           
           <!-- TEMPORARY JOURNAL BUTTON HERE -->
-          <a href="/journal">Profile</a>
+          <button type="button" class="text-white bg-blue-700 hover:bg-bluegit -800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> <a href="/journal">Journal</a></button>
           
       </div>
       <div>
