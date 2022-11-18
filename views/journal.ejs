@@ -1,6 +1,6 @@
 <%- include('partials/header') -%>
-<div class="bg-gray-900 text-white">
-    <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
+<div class="">
+    <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen">
         <div class="col-6">
             <div class="mt-5">
               <h2>Add an Entry</h2>
@@ -18,37 +18,7 @@
 
                 <div class="mb-3">
                     <fieldset>
-                        <div>
-                            <input type="checkbox" id="anxious" name="triggers" value="anxious">
-                            <label for="stressed">Anxious</label>
-                          </div>
-                        
-                          <div>
-                            <input type="checkbox" id="excited" name="triggers" value="excited">
-                            <label for="excited">Excited</label>
-                          </div>
-
-                          <div>
-                            <input type="checkbox" id="bored" name="triggers"  value="bored">
-                            <label for="bored">Bored</label>
-                          </div>
-                        
-                          <div>
-                            <input type="checkbox" id="sad" name="triggers"  value="sad">
-                            <label for="sad">Sad</label>
-                          </div>
-
-                          <div>
-                            <input type="checkbox" id="happy" name="triggers"  value="happy">
-                            <label for="happy">Happy</label>
-                          </div>
-                        
-                          <div>
-                            <input type="checkbox" id="lonely" name="triggers"  value="lonely">
-                            <label for="lonely">Lonely</label>
-                          </div>
-                        </div>
-
+                        <legend>What triggered you? --- add functionality to only show this fieldset if user clicks yes</legend>
                         <div>
                           <p>Behavioural triggers</p>
                           <div>
@@ -127,16 +97,21 @@
                           </div>
                         
                           <div>
-                            <input type="checkbox" id="bigEvent" name="triggers"  value="Celebrating a big event">
+                            <input type="checkbox" id="bigEvent" name="triggers"  value="celebrating a big event">
                             <label for="bigEvent">Celebrating a big event</label>
                           </div>
 
                         </div>
+                        
+                        <!-- If the user entered a custom trigger during sign up, display it here -->
+                        <% if (!(allTriggers.includes(trigger[trigger.length - 1]))) { %>
+                            <div>
+                                <br>
+                                <input type="checkbox" id="<%= trigger[trigger.length - 1] %>" name="triggers"  value="<%= trigger[trigger.length - 1] %>">
+                                <label for="<%= trigger[trigger.length - 1] %>"><%= trigger[trigger.length - 1] %></label>
+                            </div>
+                        <% } %>
 
-                        <div>
-                          <label for="otherTrigger">Enter another trigger</label>
-                          <input type="text" id="otherTrigger" name="triggers" >
-                        </div>
                     </fieldset>
                 </div>
 
@@ -281,31 +256,31 @@
                             <input type="radio" id="happy1" name="happinessLevel" value="1">
                             <label for="happy1" class="form-label">1</label>
     
-                            <input type="radio" id="happy2" name="sadnessLevel" value="2">
+                            <input type="radio" id="happy2" name="happinessLevel" value="2">
                             <label for="happy2" class="form-label">2</label>
     
-                            <input type="radio" id="happy3" name="sadnessLevel" value="3">
+                            <input type="radio" id="happy3" name="happinessLevel" value="3">
                             <label for="happy3" class="form-label">3</label>
     
-                            <input type="radio" id="happy4" name="sadnessLevel" value="4">
+                            <input type="radio" id="happy4" name="happinessLevel" value="4">
                             <label for="happy4" class="form-label">4</label>
     
-                            <input type="radio" id="happy5" name="sadnessLevel" value="5">
+                            <input type="radio" id="happy5" name="happinessLevel" value="5">
                             <label for="happy5" class="form-label">5</label>
     
-                            <input type="radio" id="happy6" name="sadnessLevel" value="6">
+                            <input type="radio" id="happy6" name="happinessLevel" value="6">
                             <label for="happy6" class="form-label">6</label>
     
-                            <input type="radio" id="happy7" name="sadnessLevel" value="7">
+                            <input type="radio" id="happy7" name="happinessLevel" value="7">
                             <label for="happy7" class="form-label">7</label>
     
-                            <input type="radio" id="happy8" name="sadnessLevel" value="8">
+                            <input type="radio" id="happy8" name="happinessLevel" value="8">
                             <label for="happy8" class="form-label">8</label>
     
-                            <input type="radio" id="happy9" name="sadnessLevel" value="9">
+                            <input type="radio" id="happy9" name="happinessLevel" value="9">
                             <label for="happy9" class="form-label">9</label>
     
-                            <input type="radio" id="happy10" name="sadnessLevel" value="10">
+                            <input type="radio" id="happy10" name="happinessLevel" value="10">
                             <label for="happy10" class="form-label">10</label>
                         </fieldset>
 
