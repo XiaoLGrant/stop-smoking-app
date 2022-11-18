@@ -69,6 +69,7 @@ exports.postSignup = (req, res, next) => {
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
+    console.log(req.body.triggers)
   if (!validator.isLength(req.body.password, { min: 8 }))
     validationErrors.push({
       msg: "Password must be at least 8 characters long",
@@ -91,6 +92,7 @@ exports.postSignup = (req, res, next) => {
     password: req.body.password,
     dailyCigarettes: req.body.numberOfCigs,
     dailyCost: req.body.amountSpent,
+    triggers: req.body.triggers,
     
   });
 
