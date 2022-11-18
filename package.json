@@ -4,10 +4,9 @@
   "description": "100Devs Social Network",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1", 
+    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"nodemon server.js\" \"tailwindcss -i ./public/css/style.css -o ./public/output.css --watch\" ",
-    "build":"tailwindcss -i ./public/css/style.css -o ./public/output.css"
-
+    "build": "tailwindcss -i ./public/css/style.css -o ./public/output.css"
   },
   "author": "",
   "license": "MIT",
@@ -32,5 +31,14 @@
   },
   "devDependencies": {
     "tailwindcss": "^3.2.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MiliMade/stop-smoking-app.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/MiliMade/stop-smoking-app/issues"
+  },
+  "homepage": "https://github.com/MiliMade/stop-smoking-app#readme"
 }
