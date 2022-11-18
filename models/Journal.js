@@ -35,10 +35,22 @@ const JournalSchema = new mongoose.Schema({
     //  Choose a few different emotions, happy, anxious, etc., with a number scale from 1-10 or 1-5?
 
     // Is cravings a scale of how bad you want to smoke?
-    cravings: {
+    cravingsLevel: {
         type: Number,
         min: 1,
         max: 10,
+    },
+    boredomLevel: {
+        type: Number
+    },
+    sadnessLevel: {
+        type: Number
+    },
+    happinessLevel: {
+        type: Number
+    },
+    lonelinessLevel: {
+        type: Number
     }
 });
 
