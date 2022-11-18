@@ -9,7 +9,7 @@ const UserSchema = new mongoose.Schema({
   password: String,
   dailyCigarettes: { type: Number, required: true },
   dailyCost: { type: Number, required: true },
-  //triggers: { type: Array, default: [] }
+  triggers: { type: Array, default: [] }
 });
 
 
