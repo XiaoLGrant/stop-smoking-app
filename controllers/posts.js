@@ -51,7 +51,7 @@ module.exports = {
       console.log(err);
     }
   },
-  getJournal: async (req, res) => {
+  getJournal: (req, res) => {
     res.render("journal.ejs");
   },
   getFeed: async (req, res) => {
