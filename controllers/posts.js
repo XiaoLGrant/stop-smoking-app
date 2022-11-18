@@ -1,5 +1,6 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const Streak = require("../models/Streak")
 
 // Benefit timetable API (per day)
 const benefits = {
@@ -8,7 +9,7 @@ const benefits = {
   '0.5': 'Your blood oxygen level has increased to normal. Carbon monoxide levels have dropped to normal.',
   '1': 'Anxieties have peaked in intensity and within two weeks should return to near pre-cessation levels.',
   '2': 'Damaged nerve endings have started to regrow and your sense of smell and taste are beginning to return to normal. Cessation anger and irritability have peaked.',
-  '3': "Your entire body will test 100% nicotine-free. Over 90% of all nicotine metabolites (the chemicals nicotine breaks down into) have passed from your body via your urine. ung bronchial tubes leading to air sacs (alveoli) are beginning to relax in recovering smokers. Breathing is becoming easier and your lung's functional abilities are improving.",
+  '3': "Your entire body will test 100% nicotine-free. Over 90% of all nicotine metabolites (the chemicals nicotine breaks down into) have passed from your body via your urine. Your bronchial tubes leading to air sacs (alveoli) are beginning to relax. Breathing is becoming easier and your lung's functional abilities are improving.",
   '5': 'You are down to experiencing just three induced crave episodes per day. It is unlikely that any single episode will last longer than 3 minutes. Keep a clock handy and time the episode to maintain an honest perspective on time.',
   '10': 'You are down to encountering less than two crave episodes per day.',
   '11': 'Recovery has likely progressed to the point where your addiction is no longer doing the talking. Blood circulation in your gums and teeth are now similar to that of a non-user.',
@@ -21,13 +22,29 @@ const benefits = {
   '3650': "Your chances of developing lung cancer and dying from it are roughly cut in half compared with someone who continues to smoke. The likelihood of developing mouth, throat, or pancreatic cancer has significantly reduced.",
   // cut off at 10 years mark
 }
-
+function benefitDay (streak) { 
+  let key = Object.keys(benefits)
+        .sort((a, z) => a - z)
+        .map(numStr => Number(numStr))
+        .filter((n, i, arr) => {
+          if (n == streak ){
+            return n
+          }else if ( n < streak && arr[i+1] > streak ){
+            return n
+          }
+        })
+  return key
+}
 
 module.exports = {
   getProfile: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
+
+      // determine durantion of streak match benefit day
+      const streak = 1 // TO BE CHANGED TO req.body.streak
+      let todayMsg = benefits[benefitDay(streak)]
+      res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg });
     } catch (err) {
       console.log(err);
     }
@@ -70,32 +87,32 @@ module.exports = {
       console.log(err);
     }
   },
-  // likePost: async (req, res) => {
-  //   try {
-  //     await Post.findOneAndUpdate(
-  //       { _id: req.params.id },
-  //       {
-  //         $inc: { likes: 1 },
-  //       }
-  //     );
-  //     console.log("Likes +1");
-  //     res.redirect(`/post/${req.params.id}`);
-  //   } catch (err) {
-  //     console.log(err);
-  //   }
-  // },
-  // deletePost: async (req, res) => {
-  //   try {
-  //     // Find post by id
-  //     let post = await Post.findById({ _id: req.params.id });
-  //     // Delete image from cloudinary
-  //     await cloudinary.uploader.destroy(post.cloudinaryId);
-  //     // Delete post from db
-  //     await Post.remove({ _id: req.params.id });
-  //     console.log("Deleted Post");
-  //     res.redirect("/profile");
-  //   } catch (err) {
-  //     res.redirect("/profile");
-  //   }
-  // },
+  likePost: async (req, res) => {
+    try {
+      await Post.findOneAndUpdate(
+        { _id: req.params.id },
+        {
+          $inc: { likes: 1 },
+        }
+      );
+      console.log("Likes +1");
+      res.redirect(`/post/${req.params.id}`);
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  deletePost: async (req, res) => {
+    try {
+      // Find post by id
+      let post = await Post.findById({ _id: req.params.id });
+      // Delete image from cloudinary
+      await cloudinary.uploader.destroy(post.cloudinaryId);
+      // Delete post from db
+      await Post.remove({ _id: req.params.id });
+      console.log("Deleted Post");
+      res.redirect("/profile");
+    } catch (err) {
+      res.redirect("/profile");
+    }
+  },  
 };

@@ -7,6 +7,9 @@
               <p><strong>Email</strong>: <%= user.email %></p>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
+          <!-- TODAY'S MESSGAGE POPUP HERE -->
+          <div class="msg"><%= message  %></div>
+          
           <div class="mt-5">
             <h2>Add a post</h2>
             <form action="/post/createPost" enctype="multipart/form-data" method="POST">
