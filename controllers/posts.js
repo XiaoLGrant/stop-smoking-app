@@ -1,11 +1,51 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
+const Streak = require("../models/Streak")
+
+// Benefit timetable API (per day)
+const benefits = {
+  '0.01': 'Your blood pressure, pulse rate and the temperature of your hands and feet have returned to normal.',
+  '0.33': 'Remaining nicotine in your bloodstream has fallen to 6.25% of normal peak daily levels, a 93.75% reduction.',
+  '0.5': 'Your blood oxygen level has increased to normal. Carbon monoxide levels have dropped to normal.',
+  '1': 'Anxieties have peaked in intensity and within two weeks should return to near pre-cessation levels.',
+  '2': 'Damaged nerve endings have started to regrow and your sense of smell and taste are beginning to return to normal. Cessation anger and irritability have peaked.',
+  '3': "Your entire body will test 100% nicotine-free. Over 90% of all nicotine metabolites (the chemicals nicotine breaks down into) have passed from your body via your urine. Your bronchial tubes leading to air sacs (alveoli) are beginning to relax. Breathing is becoming easier and your lung's functional abilities are improving.",
+  '5': 'You are down to experiencing just three induced crave episodes per day. It is unlikely that any single episode will last longer than 3 minutes. Keep a clock handy and time the episode to maintain an honest perspective on time.',
+  '10': 'You are down to encountering less than two crave episodes per day.',
+  '11': 'Recovery has likely progressed to the point where your addiction is no longer doing the talking. Blood circulation in your gums and teeth are now similar to that of a non-user.',
+  '15': "Cessation related anger, anxiety, difficulty concentrating, impatience, insomnia, restlessness and depression have ended. If still experiencing any of these symptoms get seen and evaluated by your physician.",
+  '31': "Your heart attack risk has started to drop. Your lung function has noticeably improved. If your health permits, sample your circulation and lung improvement by walking briskly, climbing stairs or running further or faster than normal.",
+  '90': "For the next several months after quitting, your circulation continues to improve.",
+  '270': "Nine months after quitting, your lungs have significantly healed themselves. The delicate, hair-like structures inside the lungs known as cilia have recovered from the toll cigarette smoke took on them. These structures help push mucus out of the lungs and help fight infections. Around this time, many former smokers like you notice a decrease in the frequency of lung infections because the healed cilia can do their job more easily.",
+  '365': "Your risk for coronary heart disease decreases by half. This risk will continue to drop past the 1-year mark.",
+  '1825': "Your body has healed itself enough for the arteries and blood vessels to begin to widen again. This widening means the blood is less likely to clot, lowering the risk of stroke.",
+  '3650': "Your chances of developing lung cancer and dying from it are roughly cut in half compared with someone who continues to smoke. The likelihood of developing mouth, throat, or pancreatic cancer has significantly reduced.",
+  // cut off at 10 years mark
+}
+function benefitDay (streak) { 
+  let key = Object.keys(benefits)
+        .sort((a, z) => a - z)
+        .map(numStr => Number(numStr))
+        .filter((n, i, arr) => {
+          if (n == streak ){
+            return n
+          }else if ( n < streak && arr[i+1] > streak ){
+            return n
+          }
+        })
+  return key
+}
 
 module.exports = {
   getProfile: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
-      res.render("profile.ejs", { posts: posts, user: req.user });
+      const userStreak = await Streak.find({ userId: req.user.id })
+      console.log(userStreak)
+      // determine durantion of streak match benefit day
+      const streak = 1 // TO BE CHANGED TO req.body.streak
+      let todayMsg = benefits[benefitDay(streak)]
+      res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: userStreak });
     } catch (err) {
       console.log(err);
     }
@@ -75,5 +115,5 @@ module.exports = {
     } catch (err) {
       res.redirect("/profile");
     }
-  },
+  },  
 };
