@@ -91,7 +91,7 @@ exports.postSignup = (req, res, next) => {
     password: req.body.password,
     dailyCigarettes: req.body.numberOfCigs,
     dailyCost: req.body.amountSpent,
-    
+    triggers: req.body.triggers,
   });
 
   User.findOne(
