@@ -1,6 +1,7 @@
 const passport = require("passport");
 const validator = require("validator");
 const User = require("../models/User");
+const Streak = require("../models/Streak");
 
 exports.getLogin = (req, res) => {
   if (req.user) {
@@ -66,6 +67,8 @@ exports.getSignup = (req, res) => {
 };
 
 exports.postSignup = (req, res, next) => {
+
+  console.log(req.body);
   const validationErrors = [];
   if (!validator.isEmail(req.body.email))
     validationErrors.push({ msg: "Please enter a valid email address." });
@@ -93,6 +96,40 @@ exports.postSignup = (req, res, next) => {
     dailyCost: req.body.amountSpent,
     triggers: req.body.triggers,
   });
+
+  console.log('userDoc:', user);
+
+  let startDate = null;
+  let streak = 0;
+  //determine if there is a streak to track
+  let isStreak = req.body.smokingStatus === 'stoppedBefore' || req.body.smokingStatus === 'stoppedToday'
+  if (req.body.smokingStatus === 'stoppedBefore') {
+    //find current streak in milliseconds
+    let currentStreak = Date.now() - new Date(req.body.stoppedSmokingDate);
+    //convert to streak in days
+    let streakInDays = parseInt(currentStreak / (24 * 60 * 60 * 1000));
+    //add start date
+    startDate = new Date(req.body.stoppedSmokingDate);
+    //add streak
+    streak = streakInDays;
+    console.log(startDate)
+    console.log(streak)
+  }
+  else if (req.body.smokingStatus === 'stoppedToday') {
+    //set streak start date to today
+    startDate = new Date(Date.now())
+  }
+  
+  //create new streak tracking documnet for user
+  const newStreak = new Streak({
+    userId: user._id,
+    startDate: startDate,
+    endDate: null,
+    streak: streak,
+    isCurrentStreak: isStreak,
+  })
+  
+  console.log('streakDoc:', newStreak);
 
   User.findOne(
     { $or: [{ email: req.body.email }, { userName: req.body.userName }] },
