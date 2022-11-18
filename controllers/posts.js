@@ -51,8 +51,13 @@ module.exports = {
       console.log(err);
     }
   },
-  getJournal: (req, res) => {
-    res.render("journal.ejs");
+  getJournal: async (req, res) => {
+    try {
+      res.render("journal.ejs", { allTriggers: ['going to a bar', 'going to a party or other social event', 'going to a concert', 'seeing someone else smoke', 'being with friends who smoke', 'celebrating a big event'], trigger: req.user.triggers });
+    } catch (err) {
+      console.log(err)
+    }
+    
   },
   getFeed: async (req, res) => {
     try {
@@ -77,14 +82,14 @@ module.exports = {
         smoked: req.body.smokedToday,
         triggers: req.body.triggers,
         cravingsLevel: req.body.cravingsLevel,
+        anxietyLevel: req.body.anxietyLevel,
+        excitementLevel: req.body.excitementLevel,
         boredomLevel: req.body.boredomLevel,
         sadnessLevel: req.body.sadnessLevel,
         happinessLevel: req.body.happinessLevel,
         lonelinessLevel: req.body.lonelinessLevel,
-
-
       });
-      console.log("Post has been added!");
+      console.log("Journal entry has been added!");
       res.redirect("/profile");
     } catch (err) {
       console.log(err);

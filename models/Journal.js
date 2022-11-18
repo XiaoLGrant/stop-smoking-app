@@ -16,23 +16,6 @@ const JournalSchema = new mongoose.Schema({
     triggers: {
         type: Array,
     },
-    // mood: {
-    //     type: String,
-    //     enum: [ 
-    //         'Accomplished', 
-    //         'Angry', 
-    //         'Anxious', 
-    //         'Bored', 
-    //         'Happy', 
-    //         'Helpless', 
-    //         'Hopeless', 
-    //         'Overwhelmed', 
-    //         'Proud', 
-    //         'Sad', 
-    //         '...'],
-    // }
-    // Mood alternative:
-    //  Choose a few different emotions, happy, anxious, etc., with a number scale from 1-10 or 1-5?
 
     // Is cravings a scale of how bad you want to smoke?
     cravingsLevel: {
@@ -40,18 +23,39 @@ const JournalSchema = new mongoose.Schema({
         min: 1,
         max: 10,
     },
+
+    //maybe wrap these in a mood object?
+    anxietyLevel: {
+        type: Number,
+        min: 1,
+        max: 10,
+    },
+    excitementLevel: {
+        type: Number,
+        min: 1,
+        max: 10,
+    },
     boredomLevel: {
-        type: Number
+        type: Number,
+        min: 1,
+        max: 10,
     },
     sadnessLevel: {
-        type: Number
+        type: Number,
+        min: 1,
+        max: 10,
     },
     happinessLevel: {
-        type: Number
+        type: Number,
+        min: 1,
+        max: 10,
     },
     lonelinessLevel: {
-        type: Number
+        type: Number,
+        min: 1,
+        max: 10,
     }
+    
 });
 
 module.exports = mongoose.model("Journal", JournalSchema);
