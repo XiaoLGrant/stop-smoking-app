@@ -1,6 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 const Streak = require("../models/Streak")
+const Journal = require("../models/Journal")
 
 // Benefit timetable API (per day)
 const benefits = {
@@ -65,6 +66,26 @@ module.exports = {
     try {
       const post = await Post.findById(req.params.id);
       res.render("post.ejs", { post: post, user: req.user });
+    } catch (err) {
+      console.log(err);
+    }
+  },
+  createJournal: async (req, res) => {
+    try {
+      await Journal.create({
+        userId: req.user.id,
+        smoked: req.body.smokedToday,
+        triggers: req.body.triggers,
+        cravingsLevel: req.body.cravingsLevel,
+        boredomLevel: req.body.boredomLevel,
+        sadnessLevel: req.body.sadnessLevel,
+        happinessLevel: req.body.happinessLevel,
+        lonelinessLevel: req.body.lonelinessLevel,
+
+
+      });
+      console.log("Post has been added!");
+      res.redirect("/profile");
     } catch (err) {
       console.log(err);
     }
