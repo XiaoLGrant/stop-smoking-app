@@ -18,7 +18,7 @@ const StreakSchema = new mongoose.Schema({
         default: true,
     }, 
     // Easily determine max streak duration
-    duration: {
+    streak: {
         type: Number,
     }
 });
