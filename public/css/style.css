@@ -2,3 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
+.container-height {
+  height: calc(100vh - 165px)
+}
