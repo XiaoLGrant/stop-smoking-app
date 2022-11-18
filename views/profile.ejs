@@ -7,6 +7,10 @@
               <p><strong>Email</strong>: <%= user.email %></p>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
+          <!-- TODAY'S MESSGAGE POPUP HERE -->
+          <div class="msg"><%= message %></div>
+          
+          
       </div>
       <div>
         <p>Number of day without smoking: <span>NUMBER</span></p>
@@ -23,21 +27,6 @@
         <!--  display visual representation of mood over time         -->
       </div>
 
-
-      <div class="col-6">
-        <ul class="row list-unstyled">
-        <% for(var i=0; i<posts.length; i++) {%>
-          <li class="col-6 justify-content-between mt-5">
-            <a href="/post/<%= posts[i]._id%>">
-              <img class="img-fluid" src="<%= posts[i].image%>">
-            </a>
-          </li>
-        <% } %>
-        </ul>
-        <div class="row justify-content-center mt-5">
-          <a class="btn btn-primary" href="/feed">Return to Feed</a>
-        </div>  
-      </div>  
     </div>
   </div>
 </div>
