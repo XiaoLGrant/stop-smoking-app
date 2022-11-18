@@ -1,10 +1,10 @@
 <%- include('partials/header') -%>
-<div class="container">
-    <div class="row mt-5">
+<div class="bg-gray-900 text-white">
+    <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen lg:items-center">
         <div class="col-6">
             <div class="mt-5">
               <h2>Add an Entry</h2>
-              <form action="/post/___PLACEHOLDER____" method="POST">
+              <form action="/post/createJournal" method="POST">
                 
                 <div class="mb-3">
                     <fieldset>
@@ -18,15 +18,125 @@
 
                 <div class="mb-3">
                     <fieldset>
-                        <label for="triggers" class="form-label">Select potential triggers:</label>
-                        <select class="form-control" id="triggers" name="triggers" multiple>
-                            <option>--Please choose one or more options</option>
-                            <option value="test">test1</option>
-                            <option value="test2">test2</option>
-                            <!-- Use ejs to loop through triggers listed during sign up and create option elements for each trigger -->
-                        </select>
-                        <label for="moreTriggers">Enter new trigger/s</label>
-                        <textarea class="form-control" id="moreTriggers" name="moreTriggers"></textarea>
+                        <div>
+                            <input type="checkbox" id="anxious" name="triggers" value="anxious">
+                            <label for="stressed">Anxious</label>
+                          </div>
+                        
+                          <div>
+                            <input type="checkbox" id="excited" name="triggers" value="excited">
+                            <label for="excited">Excited</label>
+                          </div>
+
+                          <div>
+                            <input type="checkbox" id="bored" name="triggers"  value="bored">
+                            <label for="bored">Bored</label>
+                          </div>
+                        
+                          <div>
+                            <input type="checkbox" id="sad" name="triggers"  value="sad">
+                            <label for="sad">Sad</label>
+                          </div>
+
+                          <div>
+                            <input type="checkbox" id="happy" name="triggers"  value="happy">
+                            <label for="happy">Happy</label>
+                          </div>
+                        
+                          <div>
+                            <input type="checkbox" id="lonely" name="triggers"  value="lonely">
+                            <label for="lonely">Lonely</label>
+                          </div>
+                        </div>
+
+                        <div>
+                          <p>Behavioural triggers</p>
+                          <div>
+                            <input type="checkbox" id="talkingOnPhone" name="triggers" value="talking on the phone">
+                            <label for="talkingOnPhone">Talking on the phone</label>
+                          </div>
+                        
+                          <div>
+                            <input type="checkbox" id="drinkingAlcohol" name="triggers"  value="drinking alcohol">
+                            <label for="drinkingAlcohol">Drinking alcohol</label>
+                          </div>
+
+                          <div>
+                            <input type="checkbox" id="watchingTV" name="triggers"  value="watching tv">
+                            <label for="watchingTV">Watching TV</label>
+                          </div>
+                        
+                          <div>
+                            <input type="checkbox" id="driving" name="triggers" value="driving">
+                            <label for="driving">Driving</label>
+                          </div>
+
+                          <div>
+                            <input type="checkbox" id="finishingMeal" name="triggers"  value="finishing a meal">
+                            <label for="finishingMeal">Finishing a meal</label>
+                          </div>
+                        
+                          <div>
+                            <input type="checkbox" id="drinkCoffee" name="triggers"  value="drinking coffee">
+                            <label for="drinkCoffee">Drinking coffee</label>
+                          </div>
+
+                          <div>
+                            <input type="checkbox" id="workBreak" name="triggers"  value="taking a work break">
+                            <label for="workBreak">Taking a work break</label>
+                          </div>
+
+                          <div>
+                            <input type="checkbox" id="afterSex" name="triggers"  value="after having sex">
+                            <label for="afterSex">After having sex</label>
+                          </div>
+
+                          <div>
+                            <input type="checkbox" id="beforeBed" name="triggers"  value="before going to bed">
+                            <label for="beforeBed">Before going to bed</label>
+                          </div>
+                        </div>
+
+
+                        <div>
+                          <p>Social triggers</p>
+
+                          <div>
+                            <input type="checkbox" id="goingBar" name="triggers"  value="going to a bar">
+                            <label for="goingBar">Going to a bar</label>
+                          </div>
+                        
+                          <div>
+                            <input type="checkbox" id="socialEvent" name="triggers"  value="going to a party or other social event">
+                            <label for="socialEvent">Going to a party or other social event</label>
+                          </div>
+
+                          <div>
+                            <input type="checkbox" id="concert" name="triggers"  value="going to a concert">
+                            <label for="concert">Going to a concert</label>
+                          </div>
+                        
+                          <div>
+                            <input type="checkbox" id="someoneSmoke" name="triggers"  value="seeing someone else smoke">
+                            <label for="someoneSmoke">Seeing someone else smoke</label>
+                          </div>
+
+                          <div>
+                            <input type="checkbox" id="friendSmoke" name="triggers"  value="being with friends who smoke">
+                            <label for="friendSmoke">Being with friends who smoke</label>
+                          </div>
+                        
+                          <div>
+                            <input type="checkbox" id="bigEvent" name="triggers"  value="Celebrating a big event">
+                            <label for="bigEvent">Celebrating a big event</label>
+                          </div>
+
+                        </div>
+
+                        <div>
+                          <label for="otherTrigger">Enter another trigger</label>
+                          <input type="text" id="otherTrigger" name="triggers" >
+                        </div>
                     </fieldset>
                 </div>
 
@@ -48,7 +158,7 @@
                             <input type="radio" id="anxious4" name="anxietyLevel" value="4">
                             <label for="anxious4" class="form-label">4</label>
     
-                            <input type="radio" id="anxious5" name="canxietyLevel" value="5">
+                            <input type="radio" id="anxious5" name="anxietyLevel" value="5">
                             <label for="anxious5" class="form-label">5</label>
     
                             <input type="radio" id="anxious6" name="anxietyLevel" value="6">
@@ -66,9 +176,172 @@
                             <input type="radio" id="anxious10" name="anxietyLevel" value="10">
                             <label for="anxious10" class="form-label">10</label>
                         </fieldset>
+
                         <fieldset>
-                            <legend>Mood2</legend>
+                            <legend>Excited</legend>
+                            <input type="radio" id="excited1" name="excitementLevel" value="1">
+                            <label for="excited1" class="form-label">1</label>
+    
+                            <input type="radio" id="excited2" name="excitementLevel" value="2">
+                            <label for="excited2" class="form-label">2</label>
+    
+                            <input type="radio" id="excited3" name="excitementLevel" value="3">
+                            <label for="excited3" class="form-label">3</label>
+    
+                            <input type="radio" id="excited4" name="excitementLevel" value="4">
+                            <label for="excited4" class="form-label">4</label>
+    
+                            <input type="radio" id="excited5" name="excitementLevel" value="5">
+                            <label for="excited5" class="form-label">5</label>
+    
+                            <input type="radio" id="excited6" name="excitementLevel" value="6">
+                            <label for="excited6" class="form-label">6</label>
+    
+                            <input type="radio" id="excited7" name="excitementLevel" value="7">
+                            <label for="excited7" class="form-label">7</label>
+    
+                            <input type="radio" id="excited8" name="excitementLevel" value="8">
+                            <label for="excited8" class="form-label">8</label>
+    
+                            <input type="radio" id="excited9" name="excitementLevel" value="9">
+                            <label for="excited9" class="form-label">9</label>
+    
+                            <input type="radio" id="excited10" name="excitementLevel" value="10">
+                            <label for="excited10" class="form-label">10</label>
                         </fieldset>
+
+                        <fieldset>
+                            <legend>Bored</legend>
+                            <input type="radio" id="bored1" name="boredomLevel" value="1">
+                            <label for="bored1" class="form-label">1</label>
+    
+                            <input type="radio" id="bored2" name="boredomLevel" value="2">
+                            <label for="bored2" class="form-label">2</label>
+    
+                            <input type="radio" id="bored3" name="boredomLevel" value="3">
+                            <label for="bored3" class="form-label">3</label>
+    
+                            <input type="radio" id="bored4" name="boredomLevel" value="4">
+                            <label for="bored4" class="form-label">4</label>
+    
+                            <input type="radio" id="bored5" name="boredomLevel" value="5">
+                            <label for="bored5" class="form-label">5</label>
+    
+                            <input type="radio" id="bored6" name="boredomLevel" value="6">
+                            <label for="bored6" class="form-label">6</label>
+    
+                            <input type="radio" id="bored7" name="boredomLevel" value="7">
+                            <label for="bored7" class="form-label">7</label>
+    
+                            <input type="radio" id="bored8" name="boredomLevel" value="8">
+                            <label for="bored8" class="form-label">8</label>
+    
+                            <input type="radio" id="bored9" name="boredomLevel" value="9">
+                            <label for="bored9" class="form-label">9</label>
+    
+                            <input type="radio" id="bored10" name="boredomLevel" value="10">
+                            <label for="bored10" class="form-label">10</label>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Sad</legend>
+                            <input type="radio" id="sad1" name="sadnessLevel" value="1">
+                            <label for="sad1" class="form-label">1</label>
+    
+                            <input type="radio" id="sad2" name="sadnessLevel" value="2">
+                            <label for="sad2" class="form-label">2</label>
+    
+                            <input type="radio" id="sad3" name="sadnessLevel" value="3">
+                            <label for="sad3" class="form-label">3</label>
+    
+                            <input type="radio" id="sad4" name="sadnessLevel" value="4">
+                            <label for="sad4" class="form-label">4</label>
+    
+                            <input type="radio" id="sad5" name="sadnessLevel" value="5">
+                            <label for="sad5" class="form-label">5</label>
+    
+                            <input type="radio" id="sad6" name="sadnessLevel" value="6">
+                            <label for="sad6" class="form-label">6</label>
+    
+                            <input type="radio" id="sad7" name="sadnessLevel" value="7">
+                            <label for="sad7" class="form-label">7</label>
+    
+                            <input type="radio" id="sad8" name="sadnessLevel" value="8">
+                            <label for="sad8" class="form-label">8</label>
+    
+                            <input type="radio" id="sad9" name="sadnessLevel" value="9">
+                            <label for="sad9" class="form-label">9</label>
+    
+                            <input type="radio" id="sad10" name="sadnessLevel" value="10">
+                            <label for="sad10" class="form-label">10</label>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Happy</legend>
+                            <input type="radio" id="happy1" name="happinessLevel" value="1">
+                            <label for="happy1" class="form-label">1</label>
+    
+                            <input type="radio" id="happy2" name="sadnessLevel" value="2">
+                            <label for="happy2" class="form-label">2</label>
+    
+                            <input type="radio" id="happy3" name="sadnessLevel" value="3">
+                            <label for="happy3" class="form-label">3</label>
+    
+                            <input type="radio" id="happy4" name="sadnessLevel" value="4">
+                            <label for="happy4" class="form-label">4</label>
+    
+                            <input type="radio" id="happy5" name="sadnessLevel" value="5">
+                            <label for="happy5" class="form-label">5</label>
+    
+                            <input type="radio" id="happy6" name="sadnessLevel" value="6">
+                            <label for="happy6" class="form-label">6</label>
+    
+                            <input type="radio" id="happy7" name="sadnessLevel" value="7">
+                            <label for="happy7" class="form-label">7</label>
+    
+                            <input type="radio" id="happy8" name="sadnessLevel" value="8">
+                            <label for="happy8" class="form-label">8</label>
+    
+                            <input type="radio" id="happy9" name="sadnessLevel" value="9">
+                            <label for="happy9" class="form-label">9</label>
+    
+                            <input type="radio" id="happy10" name="sadnessLevel" value="10">
+                            <label for="happy10" class="form-label">10</label>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Lonely</legend>
+                            <input type="radio" id="lonely1" name="lonelinessLevel" value="1">
+                            <label for="lonely1" class="form-label">1</label>
+    
+                            <input type="radio" id="lonely2" name="lonelinessLevel" value="2">
+                            <label for="lonely2" class="form-label">2</label>
+    
+                            <input type="radio" id="lonely3" name="lonelinessLevel" value="3">
+                            <label for="lonely3" class="form-label">3</label>
+    
+                            <input type="radio" id="lonely4" name="lonelinessLevel" value="4">
+                            <label for="lonely4" class="form-label">4</label>
+    
+                            <input type="radio" id="lonely5" name="lonelinessLevel" value="5">
+                            <label for="lonely5" class="form-label">5</label>
+    
+                            <input type="radio" id="lonely6" name="lonelinessLevel" value="6">
+                            <label for="lonely6" class="form-label">6</label>
+    
+                            <input type="radio" id="lonely7" name="lonelinessLevel" value="7">
+                            <label for="lonely7" class="form-label">7</label>
+    
+                            <input type="radio" id="lonely8" name="lonelinessLevel" value="8">
+                            <label for="lonely8" class="form-label">8</label>
+    
+                            <input type="radio" id="lonely9" name="lonelinessLevel" value="9">
+                            <label for="lonely9" class="form-label">9</label>
+    
+                            <input type="radio" id="lonely10" name="lonelinessLevel" value="10">
+                            <label for="lonely10" class="form-label">10</label>
+                        </fieldset>
+                            
                     </fieldset>
                 </div>
 
@@ -109,11 +382,7 @@
 
                         <input type="radio" id="craving10" name="cravingsLevel" value="10">
                         <label for="craving10" class="form-label">10</label>
-
-                        <!-- if we'd rather use an input field for rating -->
-                        <!-- <input type="number" min="1" max="10" class="form-control" id="cravingsLevel" name="cravingsLevel"> -->
                     </fieldset>
-                    
                     
                 </div>
                 <button type="submit" class="btn btn-primary" value="Upload">Submit</button>

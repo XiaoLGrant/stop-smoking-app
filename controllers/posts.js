@@ -40,11 +40,12 @@ module.exports = {
   getProfile: async (req, res) => {
     try {
       const posts = await Post.find({ user: req.user.id });
-
+      const userStreak = await Streak.find({ userId: req.user.id })
+      console.log(userStreak)
       // determine durantion of streak match benefit day
       const streak = 1 // TO BE CHANGED TO req.body.streak
       let todayMsg = benefits[benefitDay(streak)]
-      res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg });
+      res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: userStreak });
     } catch (err) {
       console.log(err);
     }
