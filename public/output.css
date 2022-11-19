@@ -680,15 +680,14 @@ video {
   margin-bottom: 10rem;
 }
 
-
 .mx-2 {
   margin-left: 0.5rem;
   margin-right: 0.5rem;
+}
 
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
-
 }
 
 .mt-5 {
@@ -1665,10 +1664,6 @@ video {
   transition-duration: 200ms;
 }
 
-.container-height {
-  height: calc(100vh - 165px)
-}
-
 .hover\:bg-transparent:hover {
   background-color: transparent;
 }
@@ -1683,14 +1678,14 @@ video {
   background-color: rgb(96 165 250 / var(--tw-bg-opacity));
 }
 
-.hover\:bg-blue-800:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-gray-100:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(243 244 246 / var(--tw-bg-opacity));
+}
+
+.hover\:bg-blue-800:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(30 64 175 / var(--tw-bg-opacity));
 }
 
 .hover\:text-white:hover {
@@ -1797,6 +1792,11 @@ video {
     border-color: rgb(31 41 55 / var(--tw-border-opacity));
   }
 
+  .dark\:border-gray-600 {
+    --tw-border-opacity: 1;
+    border-color: rgb(75 85 99 / var(--tw-border-opacity));
+  }
+
   .dark\:bg-gray-900 {
     --tw-bg-opacity: 1;
     background-color: rgb(17 24 39 / var(--tw-bg-opacity));
@@ -1883,10 +1883,6 @@ video {
     margin-bottom: 0px;
   }
 
-  .sm\:mb-20 {
-    margin-bottom: 5rem;
-  }
-
   .sm\:block {
     display: block;
   }
@@ -1897,10 +1893,6 @@ video {
 
   .sm\:h-9 {
     height: 2.25rem;
-  }
-
-  .sm\:w-auto {
-    width: auto;
   }
 
   .sm\:items-center {
@@ -1991,10 +1983,6 @@ video {
     background-color: rgb(255 255 255 / var(--tw-bg-opacity));
   }
 
-  .md\:bg-transparent {
-    background-color: transparent;
-  }
-
   .md\:p-0 {
     padding: 0px;
   }
@@ -2006,11 +1994,6 @@ video {
 
   .md\:font-medium {
     font-weight: 500;
-  }
-
-  .md\:text-blue-700 {
-    --tw-text-opacity: 1;
-    color: rgb(29 78 216 / var(--tw-text-opacity));
   }
 
   .md\:hover\:bg-transparent:hover {
@@ -2064,19 +2047,6 @@ video {
   .lg\:w-2\/6 {
     width: 33.333333%;
   }
-
-  .lg\:w-1\/2 {
-    width: 50%;
-
-  }
-
-
-  }
-
-  .lg\:w-4\/6 {
-    width: 66.666667%;
-  }
-
 
   .lg\:items-center {
     align-items: center;
