@@ -15,7 +15,7 @@
       <div>
         <p>Number of day without smoking: <span><%= streak %></span></p>
         <p>Body fact here: <span><%= message %></span></p>
-        <p>You have saved: <span>AMOUNT</span> dollars </p>
+        <p>You have saved: <span><%= user.dailyCost * streak %></span> dollars </p>
       </div>
 
       <div>
