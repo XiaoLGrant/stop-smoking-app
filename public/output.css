@@ -1382,14 +1382,14 @@ video {
   padding-bottom: 5rem;
 }
 
-.py-2\.5 {
-  padding-top: 0.625rem;
-  padding-bottom: 0.625rem;
-}
-
 .py-40 {
   padding-top: 10rem;
   padding-bottom: 10rem;
+}
+
+.py-2\.5 {
+  padding-top: 0.625rem;
+  padding-bottom: 0.625rem;
 }
 
 .pl-3 {
@@ -2029,10 +2029,6 @@ video {
 }
 
 @media (min-width: 1024px) {
-  .lg\:block {
-    display: block;
-  }
-
   .lg\:flex {
     display: flex;
   }
@@ -2042,10 +2038,6 @@ video {
   }
 
   .lg\:w-4\/6 {
-    width: 66.666667%;
-  }
-
-  .lg\:w-2\/3 {
     width: 66.666667%;
   }
 
