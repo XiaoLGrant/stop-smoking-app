@@ -30,7 +30,7 @@
             <% } %>
             <br>
 
-            <p class="text-center px-4">You've also saved $<%= streak * user.dailyCost %> by not smoking.</p>
+            <p class="text-center px-4">You've also saved $<%= Number.parseFloat(streak * user.dailyCost).toFixed(2) %> by not smoking.</p>
             
           </div>
 
