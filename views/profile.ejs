@@ -1,12 +1,12 @@
 <%- include('partials/loggedInHeader') -%>
 <div class="bg-gray-900 h-screen text-white">
-  <div class="mx-auto max-w-screen-xl py-32 lg:h-screen">
+  <div class="mx-auto max-w-screen-xl pt-32 pb-12 lg:h-screen">
       <div class="">
           <div>
               <p class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl px-4 mb-6 text-center">Hi, <%= user.userName %>!</p>
           </div>
           <!-- TODAY'S MESSGAGE POPUP HERE -->
-          <div class="msg">
+          <div class="msg px-4">
             <h3 class="text-2xl font-extrabold sm:text-3xl mb-6 text-center">
               <% if (streak === 0) { %>
                 You can do this!
@@ -17,7 +17,7 @@
               <% } %>
             </h3>
             
-            <p class="text-2xl font-extrabold sm:text-3xl mb-6 text-center">You're on a <%= streak %> day streak!</p>
+            <p class="text-2xl font-extrabold sm:text-3xl mb-6 text-center px-4">You're on a <%= streak %> day streak!</p>
             <% if (streak > 0) {%>
               <p class="text-center">Now that you've stopped smoking for 
                 <% if(streak === 1) {%>
@@ -30,15 +30,15 @@
             <% } %>
             <br>
 
-            <p class="text-center">You've also saved $<%= streak * user.dailyCost %> by not smoking.</p>
+            <p class="text-center px-4">You've also saved $<%= streak * user.dailyCost %> by not smoking.</p>
             
           </div>
 
-          <div class="text-2xl font-extrabold sm:text-3xl mb-6 text-center">
+          <div class="text-2xl px-4 font-extrabold sm:text-3xl mb-6 text-center">
           <br>
           <br>
           <p>Click below to add an entry to your journal:</p>
-          <button type="button" class="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> <a href="/journal">Journal</a></button>
+          <button type="button" class="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> <a href="/journal">Journal</a></button>
           </div>
       </div>
        
