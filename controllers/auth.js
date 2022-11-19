@@ -112,8 +112,6 @@ exports.postSignup = (req, res, next) => {
     startDate = new Date(req.body.stoppedSmokingDate);
     //add streak
     streak = streakInDays;
-    console.log(startDate)
-    console.log(streak)
   }
   else if (req.body.smokingStatus === 'stoppedToday') {
     //set streak start date to today
@@ -147,6 +145,7 @@ exports.postSignup = (req, res, next) => {
         if (err) {
           return next(err);
         }
+        newStreak.save().catch(err => next(err) )
         req.logIn(user, (err) => {
           if (err) {
             return next(err);
