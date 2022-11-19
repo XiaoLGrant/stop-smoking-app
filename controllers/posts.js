@@ -42,15 +42,16 @@ module.exports = {
     try {
       const posts = await Post.find({ user: req.user.id });
       const userStreak = await Streak.find({ userId: req.user.id });
+      const journalEntries = await Journal.find({ userId: req.user.id })
 
       //TODO: Update streak
       // grab streak value from streak document
       let streak = userStreak[0].streak || 0
-      console.log(streak)
 
       // determine durantion of streak match benefit day
       let todayMsg = benefits[benefitDay(streak)]
-      res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: streak });
+      console.log(journalEntries[0].anxietyLevel)
+      res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: streak, journal: journalEntries });
     } catch (err) {
       console.log(err);
     }
