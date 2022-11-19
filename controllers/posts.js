@@ -46,7 +46,6 @@ module.exports = {
       // determine durantion of streak match benefit day
       const streak = 1 // TO BE CHANGED TO req.body.streak
       let todayMsg = benefits[benefitDay(streak)]
-    
       res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: userStreak });
     } catch (err) {
       console.log(err);
