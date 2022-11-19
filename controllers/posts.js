@@ -81,6 +81,7 @@ module.exports = {
     }
   },
   createJournal: async (req, res) => {
+    console.log(req.body)
     try {
       await Journal.create({
         userId: req.user.id,
@@ -94,17 +95,20 @@ module.exports = {
         happinessLevel: req.body.happinessLevel,
         lonelinessLevel: req.body.lonelinessLevel,
       });
-      if(req.body.smoked == true) {
-        await Streak.findOneAndUpdate({ userId: req.user.id },{
-          startDate: null,
-          isCurrentStreak: false,
-          streak: 0
-        }) 
-      }else{
-        await Streak.findOneAndUpdate({ userId: req.user.id}, {
-          streak: +1
-        })
-      }
+      // if(req.body.smokedToday == true) {
+      //   await Streak.findOneAndUpdate({ userId: req.user.id },
+      //     {$inc: {
+      //     startDate: null,
+      //     isCurrentStreak: false,
+      //     streak: 0
+      //   }}) 
+      // }else{
+      //   await Streak.findOneAndUpdate({ userId: req.user.id}, {
+      //     $inc:{streak: +1}
+      //   })
+      // }
+      // const streak = await Streak.find({ userId: req.user.id})
+      // console.log(streak)
       console.log("Journal entry has been added!");
       res.redirect("/profile");
     } catch (err) {
