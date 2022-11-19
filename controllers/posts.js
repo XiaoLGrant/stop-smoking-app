@@ -45,7 +45,7 @@ module.exports = {
 
       //TODO: Update streak
       // grab streak value from streak document
-      let streak = userStreak.streak
+      let streak = userStreak.streak || 0
       console.log(streak)
 
       // determine durantion of streak match benefit day
