@@ -6,10 +6,8 @@ const streakControllers = require("../controllers/streak")
 
 // Benefit timetable API (per day)
 const benefits = {
-  '0.01': 'Your blood pressure, pulse rate and the temperature of your hands and feet have returned to normal.',
-  '0.33': 'Remaining nicotine in your bloodstream has fallen to 6.25% of normal peak daily levels, a 93.75% reduction.',
-  '0.5': 'Your blood oxygen level has increased to normal. Carbon monoxide levels have dropped to normal.',
-  '1': 'Anxieties have peaked in intensity and within two weeks should return to near pre-cessation levels.',
+  0: 'You better STOP smoking NOW!',
+  '1': 'Your anxieties have peaked in intensity, but it will drop within two weeks and should return to near pre-cessation levels. Also, GOOD NEWS! Your carbon monoxide levels have dropped to normal, same as your blood pressure, pulse rate and the temperature of your hands and feet. The remaining nicotine in your bloodstream has fallen to 6.25% of normal peak daily levels, a 93.75% reduction. Your blood oxygen level has increased to normal. KEEP THE HARD WORK!',
   '2': 'Damaged nerve endings have started to regrow and your sense of smell and taste are beginning to return to normal. Cessation anger and irritability have peaked.',
   '3': "Your entire body will test 100% nicotine-free. Over 90% of all nicotine metabolites (the chemicals nicotine breaks down into) have passed from your body via your urine. Your bronchial tubes leading to air sacs (alveoli) are beginning to relax. Breathing is becoming easier and your lung's functional abilities are improving.",
   '5': 'You are down to experiencing just three induced crave episodes per day. It is unlikely that any single episode will last longer than 3 minutes. Keep a clock handy and time the episode to maintain an honest perspective on time.',
@@ -24,14 +22,13 @@ const benefits = {
   '3650': "Your chances of developing lung cancer and dying from it are roughly cut in half compared with someone who continues to smoke. The likelihood of developing mouth, throat, or pancreatic cancer has significantly reduced.",
   // cut off at 10 years mark
 }
-function benefitDay (streak) { 
+function benefitDay (day) { 
   let key = Object.keys(benefits)
         .sort((a, z) => a - z)
-        .map(numStr => Number(numStr))
         .filter((n, i, arr) => {
-          if (n == streak ){
+          if (n == day ){
             return n
-          }else if ( n < streak && arr[i+1] > streak ){
+          }else if ( n < day && arr[i+1] > day ){
             return n
           }
         })
@@ -83,6 +80,7 @@ module.exports = {
     }
   },
   createJournal: async (req, res) => {
+    console.log(req.body)
     try {
       await Journal.create({
         userId: req.user.id,
@@ -96,6 +94,20 @@ module.exports = {
         happinessLevel: req.body.happinessLevel,
         lonelinessLevel: req.body.lonelinessLevel,
       });
+      // if(req.body.smokedToday == true) {
+      //   await Streak.findOneAndUpdate({ userId: req.user.id },
+      //     {$inc: {
+      //     startDate: null,
+      //     isCurrentStreak: false,
+      //     streak: 0
+      //   }}) 
+      // }else{
+      //   await Streak.findOneAndUpdate({ userId: req.user.id}, {
+      //     $inc:{streak: +1}
+      //   })
+      // }
+      // const streak = await Streak.find({ userId: req.user.id})
+      // console.log(streak)
       console.log("Journal entry has been added!");
       if (req.body.anxietyLevel > 5) {
         res.redirect("/relax")

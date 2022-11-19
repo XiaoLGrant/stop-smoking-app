@@ -29,13 +29,50 @@
       <div>
         <br>
         <p>Over the last <%= streak %> days you have saved: $<span><%= streak * user.dailyCost %></span>.</p>
-      </div>
 
+       <!-- CHART.JS Chart HERE -->      
+       <% function moodAverage(data) { %>
+        <% let array = [ craving = [], anxiety = [], excitement = [], bored = [], sadness = [], happiness = [], loneliness = [] ] %>
+        <% data.forEach(e => { %>
+          <% craving.push(e.cravingsLevel) %>
+          <% anxiety.push(e.anxietyLevel) %>
+          <% excitement.push(e.excitementLevel) %>
+          <% bored.push(e.boredomLevel) %>
+          <% sadness.push(e.sadnessLevel) %>
+          <% happiness.push(e.happinessLevel) %>
+          <% loneliness.push(e.lonelinessLevel) %>
+         <% }) %>
+        <% return array.map(n => n.reduce((prev, curr) => (prev + curr) / 2)) %>
+      <% } %>
       <div>
-        <!--  display visual representation of mood over time         -->
+        <div>
+          <canvas id="myChart"></canvas>
+        </div>
         
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
+        <script>
+          const ctx = document.getElementById('myChart');
+        
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: ['Craving', 'Anxious', 'Excited', 'Bored', 'Sad', 'Happy', 'Lonely'],
+              datasets: [{
+                label: 'average',
+                data: [<%= moodAverage(journal) %>],
+                borderWidth: 1
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        </script>
       </div>
-
-    </div>
   </div>
 </div>

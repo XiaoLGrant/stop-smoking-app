@@ -22,7 +22,7 @@ module.exports = {
         let streakInDays = parseInt(currentStreak / (24 * 60 * 60 * 1000));
          //update streak in doc
          await Streak.findOneAndUpdate({userId: user._id },
-          {streak: 10})
+          {streak: streakInDays})
 
       }
      

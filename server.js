@@ -10,6 +10,9 @@ const logger = require("morgan");
 const connectDB = require("./config/database");
 const mainRoutes = require("./routes/main");
 const postRoutes = require("./routes/posts");
+const cors = require("cors")
+const passportLocalMongoose = require("passport-local-mongoose")
+const async=require("async")
 
 //Use .env file in config folder
 require("dotenv").config({ path: "./config/.env" });
