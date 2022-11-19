@@ -7,19 +7,31 @@
               <p class="text-center"><strong>Email</strong>: <%= user.email %></p>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
+
+
+          <!-- TODAY'S MESSGAGE POPUP HERE -->
+          <div class="msg">
+            <p>You've gone 
+              <% if(streak === 1) {%>
+                <%= streak %> day
+              <% } else {%>
+                <%= streak %> days
+              <% } %>
+              without smoking!</p>
+            <p><%= message %></p>
+            
+          </div>
           
           <!-- TEMPORARY JOURNAL BUTTON HERE -->
           <button type="button" class="text-white bg-blue-700 hover:bg-bluegit -800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> <a href="/journal">Journal</a></button>
           
       </div>
       <div>
-        <p>Number of day without smoking: <span><%= streak %></span></p>
-        <p>Body fact here: <span><%= message %></span></p>
-        <p>You have saved: <span><%= user.dailyCost * streak %></span> dollars </p>
-      </div>
+        <br>
+        <p>Over the last <%= streak %> days you have saved: $<span><%= streak * user.dailyCost %></span>.</p>
 
-      <!-- CHART.JS Chart HERE -->      
-      <% function moodAverage(data) { %>
+       <!-- CHART.JS Chart HERE -->      
+       <% function moodAverage(data) { %>
         <% let array = [ craving = [], anxiety = [], excitement = [], bored = [], sadness = [], happiness = [], loneliness = [] ] %>
         <% data.forEach(e => { %>
           <% craving.push(e.cravingsLevel) %>
@@ -62,7 +74,5 @@
           });
         </script>
       </div>
-
-    </div>
   </div>
 </div>
