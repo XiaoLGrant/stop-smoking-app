@@ -39,25 +39,24 @@ module.exports = {
     try {
       const posts = await Post.find({ user: req.user.id });
       const userStreak = await Streak.find({ userId: req.user.id });
-      const journalData = await Journal.find({ userId: req.user.id });
-      console.log([journalData])
+      const journalEntries = await Journal.find({ userId: req.user.id })
+
       //TODO: Update streak
       // grab streak value from streak document
       let streak = userStreak[0].streak || 0
-      
 
       // determine durantion of streak match benefit day
       let todayMsg = benefits[benefitDay(streak)]
 
       
-      res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: streak, journal: journalData });
+      res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: streak, journal: journalEntries });
     } catch (err) {
       console.log(err);
     }
   },
   getJournal: async (req, res) => {
     try {
-      res.render("journal.ejs", { allTriggers: ['going to a bar', 'going to a party or other social event', 'going to a concert', 'seeing someone else smoke', 'being with friends who smoke', 'celebrating a big event'], trigger: req.user.triggers });
+      res.render("journal.ejs", { trigger: req.user.triggers })
     } catch (err) {
       console.log(err)
     }
@@ -99,6 +98,10 @@ module.exports = {
           isCurrentStreak: false,
           streak: 0
         }) 
+      }else{
+        await Streak.findOneAndUpdate({ userId: req.user.id}, {
+          streak: +1
+        })
       }
       console.log("Journal entry has been added!");
       res.redirect("/profile");
