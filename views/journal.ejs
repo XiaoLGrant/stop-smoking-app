@@ -1,26 +1,31 @@
 <%- include('partials/loggedInHeader') -%>
-<div class="">
-    <div class="mx-auto max-w-screen-xl px-4 py-32 lg:flex lg:h-screen">
+<div class="bg-white dark:bg-gray-900 py-20">
+    <div class="flex items-center w-full max-w-screen-md px-6 mx-auto lg:w-4/6">
         <div class="col-6">
             <div class="mt-5">
-              <h2>Add an Entry</h2>
-              <form action="/post/createJournal" method="POST">
+             
+              <form 
+              action="/post/createJournal" 
+              method="POST"
+              class="dark:text-white">
+                <h2 class="text-4xl font-bold text-center text-gray-700 dark:text-white my-6">Add An Entry</h2>
                 
-                <div class="mb-3">
+                <div class="mb-3" id="didjaSmoke">
                     <fieldset>
-                        <legend>Did you smoke today?</legend>
+                        <legend class="form-label text-2xl my-3">Did you smoke today?</legend>
                         <input type="radio" id="smoked" name="smokedToday" value="true">
                         <label for="smoked" class="form-label">Yes</label>
+                        <br>
                         <input type="radio" id="didNotSmoke" name="smokedToday" value="false">
                         <label for="didNotSmoke" class="form-label">No</label>
                     </fieldset>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3" id="triggerField">
                     <fieldset>
-                        <legend>What triggered you? --- add functionality to only show this fieldset if user clicks yes</legend>
+                        <legend class="form-label text-2xl my-3">What triggered you?</legend>
                         <div>
-                          <p>Behavioural triggers</p>
+                          <p class="form-label text-xl my-3">Behavioural triggers</p>
                           <div>
                             <input type="checkbox" id="talkingOnPhone" name="triggers" value="talking on the phone">
                             <label for="talkingOnPhone">Talking on the phone</label>
@@ -69,7 +74,7 @@
 
 
                         <div>
-                          <p>Social triggers</p>
+                          <p class="form-label text-xl my-3">Social triggers</p>
 
                           <div>
                             <input type="checkbox" id="goingBar" name="triggers"  value="going to a bar">
@@ -105,8 +110,8 @@
                         
                         <!-- If the user entered a custom trigger during sign up, display it here -->
                         <% if (!(allTriggers.includes(trigger[trigger.length - 1]))) { %>
-                            <div>
-                                <br>
+                            <div class="my-6">
+                                <p class="form-label text-xl my-3">Custom Trigger</p>
                                 <input type="checkbox" id="<%= trigger[trigger.length - 1] %>" name="triggers"  value="<%= trigger[trigger.length - 1] %>">
                                 <label for="<%= trigger[trigger.length - 1] %>"><%= trigger[trigger.length - 1] %></label>
                             </div>
@@ -118,9 +123,9 @@
                 <div class="mb-3">
                     <!-- will need reformatting based on how we decide we want to handle moods -->
                     <fieldset>
-                        <legend>How are you feeling today?</legend>
-                        <fieldset>
-                            <legend>Anxious</legend>
+                        <legend class="form-label text-2xl my-3">How are you feeling today?</legend>
+                        <fieldset class="my-3">
+                            <legend class="form-label text-xl">Anxious</legend>
                             <input type="radio" id="anxious1" name="anxietyLevel" value="1">
                             <label for="anxious1" class="form-label">1</label>
     
@@ -152,8 +157,8 @@
                             <label for="anxious10" class="form-label">10</label>
                         </fieldset>
 
-                        <fieldset>
-                            <legend>Excited</legend>
+                        <fieldset class="my-3">
+                            <legend class="form-label text-xl mt-3">Excited</legend>
                             <input type="radio" id="excited1" name="excitementLevel" value="1">
                             <label for="excited1" class="form-label">1</label>
     
@@ -185,8 +190,8 @@
                             <label for="excited10" class="form-label">10</label>
                         </fieldset>
 
-                        <fieldset>
-                            <legend>Bored</legend>
+                        <fieldset class="my-3">
+                            <legend class="form-label text-xl mt-3">Bored</legend>
                             <input type="radio" id="bored1" name="boredomLevel" value="1">
                             <label for="bored1" class="form-label">1</label>
     
@@ -218,8 +223,8 @@
                             <label for="bored10" class="form-label">10</label>
                         </fieldset>
 
-                        <fieldset>
-                            <legend>Sad</legend>
+                        <fieldset class="my-3">
+                            <legend class="form-label text-xl mt-3">Sad</legend>
                             <input type="radio" id="sad1" name="sadnessLevel" value="1">
                             <label for="sad1" class="form-label">1</label>
     
@@ -251,8 +256,8 @@
                             <label for="sad10" class="form-label">10</label>
                         </fieldset>
 
-                        <fieldset>
-                            <legend>Happy</legend>
+                        <fieldset class="my-3">
+                            <legend class="form-label text-xl mt-3">Happy</legend>
                             <input type="radio" id="happy1" name="happinessLevel" value="1">
                             <label for="happy1" class="form-label">1</label>
     
@@ -284,8 +289,8 @@
                             <label for="happy10" class="form-label">10</label>
                         </fieldset>
 
-                        <fieldset>
-                            <legend>Lonely</legend>
+                        <fieldset class="my-3">
+                            <legend class="form-label text-xl mt-3">Lonely</legend>
                             <input type="radio" id="lonely1" name="lonelinessLevel" value="1">
                             <label for="lonely1" class="form-label">1</label>
     
@@ -326,8 +331,8 @@
 
                 <div class="mb-3">
                     <!-- cravings scale currently set for 1-10 based on schema, might be better to use 1-5? -->
-                    <fieldset>
-                        <legend class="form-label">On a scale of 1 to 10, how badly do you want to smoke?</legend>
+                    <fieldset class="mb-6">
+                        <legend class="form-label text-2xl my-3">On a scale of 1 to 10, how badly do you want to smoke?</legend>
                         <input type="radio" id="craving1" name="cravingsLevel" value="1">
                         <label for="craving1" class="form-label">1</label>
 
@@ -360,7 +365,12 @@
                     </fieldset>
                     
                 </div>
-                <button type="submit" class="btn btn-primary" value="Upload">Submit</button>
+                <button 
+                  type="submit"  
+                  value="Upload"
+                  class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-500 rounded-md hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                    Submit
+                </button>
               </form>
             </div>
         </div>
@@ -373,3 +383,14 @@
       </div>
     </div>
   </div>
+
+<!--I can't get this to work in a seperate JS file aaaah pls help-->
+<script> 
+  document.getElementById('didjaSmoke').addEventListener('change', function(e){
+    if(e.target.value === 'true'){
+      document.getElementById('triggerField').style.display = 'block'
+    }else{
+      document.getElementById('triggerField').style.display = 'none'
+      }
+  }) 
+</script>
