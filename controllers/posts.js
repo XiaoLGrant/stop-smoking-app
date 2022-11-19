@@ -52,7 +52,10 @@ module.exports = {
 
       // determine durantion of streak match benefit day
       let todayMsg = benefits[benefitDay(streak)]
-      // console.log(journalEntries[0].anxietyLevel)
+
+      console.log(journalEntries[0].anxietyLevel)
+
+
       res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: streak, journal: journalEntries });
     } catch (err) {
       console.log(err);
@@ -60,7 +63,7 @@ module.exports = {
   },
   getJournal: async (req, res) => {
     try {
-      res.render("journal.ejs", { allTriggers: ['going to a bar', 'going to a party or other social event', 'going to a concert', 'seeing someone else smoke', 'being with friends who smoke', 'celebrating a big event'], trigger: req.user.triggers });
+      res.render("journal.ejs", { trigger: req.user.triggers })
     } catch (err) {
       console.log(err)
     }
