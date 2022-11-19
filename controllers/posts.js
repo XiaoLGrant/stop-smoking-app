@@ -50,6 +50,31 @@ module.exports = {
       // determine durantion of streak match benefit day
       let todayMsg = benefits[benefitDay(streak)]
 
+      //Count trigger occurances -- not finished or tested i'm sorry i'm so tired
+      let triggerCounts = {
+        'talking on the phone': 0,
+        'drinking alcohol': 0,
+        'watching tv': 0,
+        'driving': 0,
+        'drinking coffee': 0,
+        'taking a work break': 0,
+        'after having sex': 0,
+        'before going to bed': 0,
+        'going to a bar': 0,
+        'seeing someone else smoke': 0,
+        'being with friends who smoke': 0,
+        'celebrating a big event': 0,
+        'custom trigger': 0
+      }
+      journalEntries.forEach(entry => { 
+        if (entry.smoked) {
+          for (let trigger in entry) {
+            if (trigger == 'talkingOnPhone' ) {
+              triggerCounts['talking on the phone'] += 1
+            }
+          }
+        }
+      })
       res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: streak, journal: journalEntries });
     } catch (err) {
       console.log(err);
@@ -80,7 +105,7 @@ module.exports = {
     }
   },
   createJournal: async (req, res) => {
-    console.log(req.body)
+    //might be able to add logic that only allows user to submit this form once/day
     try {
       await Journal.create({
         userId: req.user.id,
@@ -94,21 +119,24 @@ module.exports = {
         happinessLevel: req.body.happinessLevel,
         lonelinessLevel: req.body.lonelinessLevel,
       });
-      // if(req.body.smokedToday == true) {
-      //   await Streak.findOneAndUpdate({ userId: req.user.id },
-      //     {$inc: {
-      //     startDate: null,
-      //     isCurrentStreak: false,
-      //     streak: 0
-      //   }}) 
-      // }else{
-      //   await Streak.findOneAndUpdate({ userId: req.user.id}, {
-      //     $inc:{streak: +1}
-      //   })
-      // }
-      // const streak = await Streak.find({ userId: req.user.id})
-      // console.log(streak)
+
+      //If the user indicates they've smoked today, reset their streak count to 0. Otherwise, increment their streak county by 1.
+      const streak = await Streak.find({ userId: req.user.id}) //can this be removed?
+      if(req.body.smokedToday == 'true') {
+        await Streak.findOneAndUpdate({ userId: req.user.id },
+          { $set: {
+            startDate: null,
+            isCurrentStreak: false,
+            streak: 0
+          }}, (err, result)=>{})
+      }else{
+        await Streak.findOneAndUpdate({ userId: req.user.id}, {
+          $inc:{streak: +1}
+        })
+      }
       console.log("Journal entry has been added!");
+
+      //if anxiety level is greater than 5, redirect to the page with a list of games. Otherwise, redirect to the user's profile.
       if (req.body.anxietyLevel > 5) {
         res.redirect("/relax")
       } else {
