@@ -50,7 +50,7 @@ module.exports = {
       // determine durantion of streak match benefit day
       let todayMsg = benefits[benefitDay(streak)]
 
-      //Count trigger occurances -- not finished or tested i'm sorry i'm so tired
+      //Count trigger occurances -- not finished or tested i'm sorry i'm so tired//////////////////////////////////////////
       let triggerCounts = {
         'talking on the phone': 0,
         'drinking alcohol': 0,
@@ -74,7 +74,8 @@ module.exports = {
             }
           }
         }
-      })
+      })//trigger count mess ends here if you want to just delete this garbage
+
       res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: streak, journal: journalEntries });
     } catch (err) {
       console.log(err);
