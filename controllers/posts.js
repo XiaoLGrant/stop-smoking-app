@@ -97,7 +97,11 @@ module.exports = {
         lonelinessLevel: req.body.lonelinessLevel,
       });
       console.log("Journal entry has been added!");
-      res.redirect("/profile");
+      if (req.body.anxietyLevel > 5) {
+        res.redirect("/relax")
+      } else {
+        res.redirect("/profile");
+      }
     } catch (err) {
       console.log(err);
     }
