@@ -4,15 +4,31 @@ const Journal = require("../models/Journal")
 const User = require("../models/User")
 
 module.exports = {
-  getStreak: async (req, res) => {
+  updateStreak: async (user) => {
     try {
-      const posts = await Post.find({ user: req.user.id });
-      const userStreak = await Streak.find({ userId: req.user.id })
-      console.log(typeof userStreak)
-      // determine durantion of streak match benefit day
-      const streak = 1 // TO BE CHANGED TO req.body.streak
-      let todayMsg = benefits[benefitDay(streak)]
-      res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: userStreak });
+
+      console.log(user)
+      console.log('it worked!')
+      //check if method was called from journal entry
+          //check if user entered yes to smoking
+            //if yes - reset streak
+      
+      const userStreak = await Streak.find({ userId: user._id })
+      // if there is a current streak update streak based on current day
+      if (userStreak[0].isCurrentStreak) {
+        //find current streak in milliseconds
+        let currentStreak = Date.now() - userStreak[0].startDate;
+        //convert to streak in days
+        let streakInDays = parseInt(currentStreak / (24 * 60 * 60 * 1000));
+         //update streak in doc
+         await Streak.findOneAndUpdate({userId: user._id },
+          {streak: streakInDays})
+
+      }
+     
+
+      // res.send('It worked!')
+
     } catch (err) {
       console.log(err);
     }

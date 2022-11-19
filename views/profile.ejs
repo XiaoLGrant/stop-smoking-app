@@ -7,73 +7,32 @@
               <p class="text-center"><strong>Email</strong>: <%= user.email %></p>
               <a href="/logout" class="col-3 btn btn-primary">Logout</a>
           </div>
-<<<<<<< HEAD
-=======
-
-
-          <!-- TODAY'S MESSGAGE POPUP HERE -->
-          <div class="msg">
-            <p>You've gone <%= streak %> days without smoking. <%= message %></p>
-            
-          </div>
->>>>>>> f4df4bc6ced05e51e61e941dc3cfd9b7d67adcd6
           
           <!-- TEMPORARY JOURNAL BUTTON HERE -->
           <button type="button" class="text-white bg-blue-700 hover:bg-bluegit -800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> <a href="/journal">Journal</a></button>
           
       </div>
       <div>
-<<<<<<< HEAD
         <p>Number of day without smoking: <span><%= streak %></span></p>
         <p>Body fact here: <span><%= message %></span></p>
         <p>You have saved: <span><%= user.dailyCost * streak %></span> dollars </p>
-=======
-        <br>
-        <p>You have saved: <span><%= streak * user.dailyCost %></span> dollars </p> will need to count how many total days user did not smoke
->>>>>>> f4df4bc6ced05e51e61e941dc3cfd9b7d67adcd6
       </div>
 
+      <!-- CHART.JS Chart HERE -->      
+      <% function moodAverage(data) { %>
+        <% let array = [ craving = [], anxiety = [], excitement = [], bored = [], sadness = [], happiness = [], loneliness = [] ] %>
+        <% data.forEach(e => { %>
+          <% craving.push(e.cravingsLevel) %>
+          <% anxiety.push(e.anxietyLevel) %>
+          <% excitement.push(e.excitementLevel) %>
+          <% bored.push(e.boredomLevel) %>
+          <% sadness.push(e.sadnessLevel) %>
+          <% happiness.push(e.happinessLevel) %>
+          <% loneliness.push(e.lonelinessLevel) %>
+         <% }) %>
+        <% return array.map(n => n.reduce((prev, curr) => (prev + curr) / 2)) %>
+      <% } %>
       <div>
-        <h3>Occurance of Emotions</h3>
-        # times you've been emotion and smoked
-        # times you've  been emotion and not smoked
-
-        <!-- [
-[0]   {
-[0]     triggers: [],
-[0]     _id: 637835dcdfb626446841aeca,
-[0]     userId: 6378152a62762f296788b9e1,
-[0]     smoked: false,
-[0]     cravingsLevel: 5,
-[0]     anxietyLevel: 5,
-[0]     excitementLevel: 6,
-[0]     boredomLevel: 4,
-[0]     sadnessLevel: 6,
-[0]     happinessLevel: 5,
-[0]     lonelinessLevel: 6,
-[0]     date: 2022-11-19T01:48:12.038Z,
-[0]     __v: 0
-[0]   }
-[0] ] -->
-      </div>
-
-      <div>
-        <h3>Situational triggers</h3>
-        # times situation occurred and you smoked
-        # times situation occurred and you did not smoke
-      </div>
-      <div>
-       
-        <!--  display graph of how frequently a trigger came up         -->
-        <iframe style="background: #FFFFFF;border: none;border-radius: 2px;box-shadow: 0 2px 10px 0 rgba(70, 76, 79, .2);" width="640" height="480" src="https://charts.mongodb.com/charts-stop-smoking-gkmjm/embed/charts?id=6377174b-2b1f-454d-8767-8b1d4e18f163&maxDataAge=3600&theme=light&autoRefresh=true"></iframe>
-        <p>text<br><br><br><br><br><br><br><br>
-        </p>
-      </div>
-      <!-- CHART.JS TESTING HERE -->
-      <div><%= journal.map(e => [e.cravingsLevel]) %></div>
-      
-      <div>
-<<<<<<< HEAD
         <div>
           <canvas id="myChart"></canvas>
         </div>
@@ -88,9 +47,9 @@
             data: {
               labels: ['Craving', 'Anxious', 'Excited', 'Bored', 'Sad', 'Happy', 'Lonely'],
               datasets: [{
-                label: '# of Votes',
-                data: [12, 19, 3, 5, 2, 3, 3],
-                borderWidth: 2
+                label: 'average',
+                data: [<%= moodAverage(journal) %>],
+                borderWidth: 1
               }]
             },
             options: {
@@ -102,43 +61,6 @@
             }
           });
         </script>
-=======
-        <!--  display visual representation of mood over time         -->
-        
-        <h2>chart.js test</h2>
-        <div style="width: 800px;"><canvas id="acquisitions"></canvas></div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.0.1/chart.min.js" integrity="sha512-tQYZBKe34uzoeOjY9jr3MX7R/mo7n25vnqbnrkskGr4D6YOoPYSpyafUAzQVjV6xAozAqUFIEFsCO4z8mnVBXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-        <script>
-          (async function() {
-              const data = [
-                { year: 2010, count: 10 },
-                { year: 2011, count: 20 },
-                { year: 2012, count: 15 },
-                { year: 2013, count: 25 },
-                { year: 2014, count: 22 },
-                { year: 2015, count: 30 },
-                { year: 2016, count: 28 },
-              ];
-
-              new Chart(
-                document.getElementById('acquisitions'),
-                {
-                  type: 'bar',
-                  data: {
-                    labels: data.map(row => row.year),
-                    datasets: [
-                      {
-                        label: 'Acquisitions by year',
-                        data: data.map(row => row.count)
-                      }
-                    ]
-                  }
-                }
-              );
-            })();
-        </script>
-        <!-- <script type="module" src="/js/dataVisualization.js"></script>  -->
->>>>>>> f4df4bc6ced05e51e61e941dc3cfd9b7d67adcd6
       </div>
 
     </div>

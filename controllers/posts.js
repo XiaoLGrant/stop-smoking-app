@@ -2,6 +2,7 @@ const cloudinary = require("../middleware/cloudinary");
 const Post = require("../models/Post");
 const Streak = require("../models/Streak")
 const Journal = require("../models/Journal")
+const streakControllers = require("../controllers/streak")
 
 // Benefit timetable API (per day)
 const benefits = {
@@ -42,8 +43,9 @@ module.exports = {
       const journalEntries = await Journal.find({ userId: req.user.id })
 
       //TODO: Update streak
+      streakControllers.updateStreak(req.user)
       // grab streak value from streak document
-      let streak = userStreak[0].streak || 0
+      let streak = userStreak[0].streak
 
       // determine durantion of streak match benefit day
       let todayMsg = benefits[benefitDay(streak)]
