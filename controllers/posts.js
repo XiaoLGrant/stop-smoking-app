@@ -46,11 +46,10 @@ module.exports = {
       //TODO: Update streak
       // grab streak value from streak document
       let streak = userStreak.streak
-      console.log(usertreak)
+      console.log(streak)
 
       // determine durantion of streak match benefit day
       let todayMsg = benefits[benefitDay(streak)]
-      
       res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: streak });
     } catch (err) {
       console.log(err);
