@@ -7,10 +7,3 @@ btn.addEventListener('click', () => {
 
 
 
-document.getElementById('didjaSmoke').addEventListener('change', function(e){
-  if(e.target.value === 'true'){
-    document.getElementById('triggerField').style.display = 'block'
-  }else{
-    document.getElementById('triggerField').style.display = 'none'
-    }
-}) 
