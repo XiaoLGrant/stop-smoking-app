@@ -109,7 +109,11 @@ module.exports = {
       // const streak = await Streak.find({ userId: req.user.id})
       // console.log(streak)
       console.log("Journal entry has been added!");
-      res.redirect("/profile");
+      if (req.body.anxietyLevel > 5) {
+        res.redirect("/relax")
+      } else {
+        res.redirect("/profile");
+      }
     } catch (err) {
       console.log(err);
     }
