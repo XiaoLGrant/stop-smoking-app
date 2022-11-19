@@ -699,6 +699,11 @@ video {
   margin-bottom: 5rem;
 }
 
+.mx-1 {
+  margin-left: 0.25rem;
+  margin-right: 0.25rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -1932,9 +1937,19 @@ video {
     line-height: 1;
   }
 
+  .sm\:text-2xl {
+    font-size: 1.5rem;
+    line-height: 2rem;
+  }
+
   .sm\:text-xl {
     font-size: 1.25rem;
     line-height: 1.75rem;
+  }
+
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 
   .sm\:leading-relaxed {
@@ -2034,13 +2049,6 @@ video {
 }
 
 @media (min-width: 1024px) {
-<<<<<<< HEAD
-  .lg\:block {
-    display: block;
-  }
-
-=======
->>>>>>> 6ceb546464b48fa8fc3ccca6dece4f660320851c
   .lg\:flex {
     display: flex;
   }
