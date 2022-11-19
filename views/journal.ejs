@@ -1,5 +1,5 @@
 <%- include('partials/loggedInHeader') -%>
-<div class="bg-white dark:bg-gray-900 py-20">
+<div class="bg-gray-900 py-20">
     <div class="flex items-center w-full max-w-screen-md px-6 mx-auto lg:w-4/6">
         <div class="col-6">
             <div class="mt-5">
@@ -7,8 +7,8 @@
               <form 
               action="/post/createJournal" 
               method="POST"
-              class="dark:text-white">
-                <h2 class="text-4xl font-bold text-center text-gray-700 dark:text-white my-6">Add An Entry</h2>
+              class="text-white">
+                <h2 class="text-4xl font-bold text-center text-white my-6">Add An Entry</h2>
                 
                 <div class="mb-3" id="didjaSmoke">
                     <fieldset>
@@ -365,6 +365,7 @@
                     </fieldset>
                     
                 </div>
+
                 <button 
                   type="submit"  
                   value="Upload"
