@@ -5,7 +5,7 @@ const Journal = require("../models/Journal")
 
 // Benefit timetable API (per day)
 const benefits = {
-  '0': 'You better STOP smoking NOW!',
+  0: 'You better STOP smoking NOW!',
   '1': 'Your anxieties have peaked in intensity, but it will drop within two weeks and should return to near pre-cessation levels. Also, GOOD NEWS! Your carbon monoxide levels have dropped to normal, same as your blood pressure, pulse rate and the temperature of your hands and feet. The remaining nicotine in your bloodstream has fallen to 6.25% of normal peak daily levels, a 93.75% reduction. Your blood oxygen level has increased to normal. KEEP THE HARD WORK!',
   '2': 'Damaged nerve endings have started to regrow and your sense of smell and taste are beginning to return to normal. Cessation anger and irritability have peaked.',
   '3': "Your entire body will test 100% nicotine-free. Over 90% of all nicotine metabolites (the chemicals nicotine breaks down into) have passed from your body via your urine. Your bronchial tubes leading to air sacs (alveoli) are beginning to relax. Breathing is becoming easier and your lung's functional abilities are improving.",
@@ -24,7 +24,6 @@ const benefits = {
 function benefitDay (day) { 
   let key = Object.keys(benefits)
         .sort((a, z) => a - z)
-        .map(numStr => Number(numStr))
         .filter((n, i, arr) => {
           if (n == day ){
             return n
@@ -40,7 +39,8 @@ module.exports = {
     try {
       const posts = await Post.find({ user: req.user.id });
       const userStreak = await Streak.find({ userId: req.user.id });
-
+      const journalData = await Journal.find({ userId: req.user.id });
+      console.log([journalData])
       //TODO: Update streak
       // grab streak value from streak document
       let streak = userStreak[0].streak || 0
@@ -49,7 +49,8 @@ module.exports = {
       // determine durantion of streak match benefit day
       let todayMsg = benefits[benefitDay(streak)]
 
-      res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: streak });
+      
+      res.render("profile.ejs", { posts: posts, user: req.user, message: todayMsg, streak: streak, journal: journalData });
     } catch (err) {
       console.log(err);
     }
@@ -92,6 +93,13 @@ module.exports = {
         happinessLevel: req.body.happinessLevel,
         lonelinessLevel: req.body.lonelinessLevel,
       });
+      if(req.body.smoked == true) {
+        await Streak.findOneAndUpdate({ userId: req.user.id },{
+          startDate: null,
+          isCurrentStreak: false,
+          streak: 0
+        }) 
+      }
       console.log("Journal entry has been added!");
       res.redirect("/profile");
     } catch (err) {

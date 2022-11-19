@@ -25,9 +25,38 @@
         <p>text<br><br><br><br><br><br><br><br>
         </p>
       </div>
-
+      <!-- CHART.JS TESTING HERE -->
+      <div><%= journal.map(e => [e.cravingsLevel]) %></div>
+      
       <div>
-        <!--  display visual representation of mood over time         -->
+        <div>
+          <canvas id="myChart"></canvas>
+        </div>
+        
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        
+        <script>
+          const ctx = document.getElementById('myChart');
+        
+          new Chart(ctx, {
+            type: 'bar',
+            data: {
+              labels: ['Craving', 'Anxious', 'Excited', 'Bored', 'Sad', 'Happy', 'Lonely'],
+              datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3, 3],
+                borderWidth: 2
+              }]
+            },
+            options: {
+              scales: {
+                y: {
+                  beginAtZero: true
+                }
+              }
+            }
+          });
+        </script>
       </div>
 
     </div>
