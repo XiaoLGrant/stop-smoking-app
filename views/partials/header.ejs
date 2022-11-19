@@ -18,6 +18,7 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="/output.css" />
+
   </head>
   <body>
 
@@ -27,10 +28,6 @@
             <img src="/imgs/heartbeatlogo.png" class="h-6 mr-3 sm:h-9" alt="Heartbeat image">
             <span class="self-center text-xl font-semibold whitespace-nowrap dark:text-white">BreatheEZ</span>
         </a>
-
-       
-
-
           <div class=" md:order-2 md:flex">
             <!-- -------------non-mobile view------------- -->
             <div class="hidden md:flex">
@@ -51,17 +48,32 @@
               </div>
             </div>
             <!-- -------------mobile view------------- -->
-            <div class="md:hidden flex items-center">
+            <div class="md:hidden  items-center">
               
-              <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 " aria-controls="navbar-sticky" aria-expanded="false" >
+              <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600 mobile-menu-button " aria-controls="navbar-sticky" aria-expanded="false" >
                   <span class="sr-only">Open main menu</span>
                   <svg class="w-6 h-6" aria-hidden="true" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"></path></svg>
               </button>
-              <a href="/signup" class="block">Sign Up</a>
-              <a href="/login" class="block">Log In</a>
+
             </div>
+             
           </div>
         </div>
+        <div class="mobile-menu">
+          <a href="/signup" class="block py-2 px-4 text-sm text-white">Sign Up</a>
+          <a href="/login" class="block py-2 px-4 text-sm text-white ">Log In</a>          
+        </div>
+
       </nav>
+
+      <script>
+        const btn = document.querySelector('button.mobile-menu-button')
+        const menu = document.querySelector('.mobile-menu')
+
+        btn.addEventListener('click', ()=>{
+          menu.classList.toggle('hidden')
+        })
+      </script>
+      
   </body>
 </html>
