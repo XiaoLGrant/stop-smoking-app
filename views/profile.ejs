@@ -1,9 +1,9 @@
 <%- include('partials/loggedInHeader') -%>
-<div class="bg-gray-900 h-screen text-white px-2">
-  <div class="mx-auto max-w-screen-xl px-4 py-32 lg:h-screen">
+<div class="bg-gray-900 h-screen text-white">
+  <div class="mx-auto max-w-screen-xl py-32 lg:h-screen">
       <div class="">
           <div>
-              <p class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl mb-6 text-center">Hi, <%= user.userName %>!</p>
+              <p class="bg-gradient-to-r from-green-300 via-blue-500 to-purple-600 bg-clip-text text-3xl font-extrabold text-transparent sm:text-5xl px-4 mb-6 text-center">Hi, <%= user.userName %>!</p>
           </div>
           <!-- TODAY'S MESSGAGE POPUP HERE -->
           <div class="msg">
@@ -19,7 +19,7 @@
             
             <p class="text-2xl font-extrabold sm:text-3xl mb-6 text-center">You're on a <%= streak %> day streak!</p>
             <% if (streak > 0) {%>
-              <p>Now that you've stopped smoking for 
+              <p class="text-center">Now that you've stopped smoking for 
                 <% if(streak === 1) {%>
                   <%= streak %> day
                 <% } else {%>
@@ -29,14 +29,14 @@
               </p>
             <% } %>
             <br>
-            <p>You've also saved saved $<%= streak * user.dailyCost %> by not smoking.</p>
+            <p class="text-center">You've also saved saved $<%= streak * user.dailyCost.toFixed(2) %> by not smoking.</p>
           </div>
 
           <div class="text-2xl font-extrabold sm:text-3xl mb-6 text-center">
           <br>
           <br>
           <p>Click below to add an entry to your journal:</p>
-          <button type="button" class="text-white bg-blue-700 hover:bg-bluegit -800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> <a href="/journal">Journal</a></button>
+          <button type="button" class="mt-4 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"> <a href="/journal">Journal</a></button>
           </div>
       </div>
        
@@ -56,16 +56,16 @@
             <% }) %>
             <% return array.map(n => n.reduce((prev, curr) => (prev + curr) / n.length, 0)) %>
           <% } %>
-          <canvas id="myBarChart"></canvas>
-          <canvas id="myPolarChart"></canvas>
-          <canvas id="myLineChart"></canvas>
+          <!-- <canvas id="myBarChart"></canvas> -->
+          <canvas id="myPolarChart" class="bg-white p-6 pt-8"></canvas>
+          <!-- <canvas id="myLineChart"></canvas> -->
         </div>
         
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <!-- THESE TWO GRAPHS ARE FROM THE SAME DATA, MY BRAIN IS TOO TIRED TO FIGURE OUT WHICH ONE MAKES MOST SENSE TO USE -->
         <!-- bar graph of averages for craving & moods -->
-        <script>
+        <!-- <script>
           const ctx = document.getElementById('myBarChart');
         
           new Chart(ctx, {
@@ -86,7 +86,7 @@
               }
             }
           });
-        </script>
+        </script> -->
   
         <!-- polar area graph of averages for craving & moods -->
         <script>
@@ -99,13 +99,13 @@
                 label: 'Average',
                 data: [<%= moodAverage(journal) %>],
                 backgroundColor: [ //these are the wedge colors, pls change them to be less ugly
-                  'rgb(75, 192, 192)',
-                  'rgb(20, 30, 40)',
-                  'rgb(227, 49, 30)',
-                  'rgb(163, 82, 235)',
-                  'rgb(66, 179, 245)',
-                  'orange',
-                  'blue',
+                  '#441151',
+                  '#BAFF29',
+                  '#2892D7',
+                  '#9FD8CB',
+                  '#FF0000',
+                  '#FFC100',
+                  '#FF0F80',
                 ]
               }]
             },
@@ -114,16 +114,19 @@
                 title: {
                   display: true,
                   text: 'Your Average Mood and Craving Levels',
-                  color: 'white',
+                  color: 'rgb(20, 30, 40)',
                   font: {
-                    size: 15
+                    size: 22
                   }
                 }
               },
               legend: { //legend text is hard to read on dark background, but this isn't changing the text color and idk why
                 labels: {
                   display: true,
-                  fontColor: 'white'
+                  fontColor: 'white',
+                  font: {
+                    size: 22
+                  }
                 }
               },
             }
@@ -131,7 +134,7 @@
         </script>
 
         <!-- Tried to get a line plot of ratings levels for moods & craving over time, but chart.js isn't parsing the objects correctly. Error message: identifier starts immediately after numeric literal profile:211:13 (I'm pretty sure the issue is the object ids are being parsed incorrectly because they start as numbers and then include letters e.g. 637835dcdfb626446841aeca, but I have no idea how to fix it) -->
-        <script>
+        <!-- <script>
             const lines = document.getElementById('myLineChart');
             const data = [<%= journal %>.map(entry = {
               for (let item in entry) {
@@ -202,7 +205,7 @@
                 }
               }
             });
-          </script>
+          </script> -->
 
       </div>
   </div>
