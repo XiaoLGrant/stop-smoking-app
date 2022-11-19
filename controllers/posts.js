@@ -58,7 +58,7 @@ module.exports = {
   },
   getJournal: async (req, res) => {
     try {
-      res.render("journal.ejs", { allTriggers: ['going to a bar', 'going to a party or other social event', 'going to a concert', 'seeing someone else smoke', 'being with friends who smoke', 'celebrating a big event'], trigger: req.user.triggers });
+      res.render("journal.ejs", { trigger: req.user.triggers })
     } catch (err) {
       console.log(err)
     }

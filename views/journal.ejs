@@ -109,7 +109,7 @@
                         </div>
                         
                         <!-- If the user entered a custom trigger during sign up, display it here -->
-                        <% if (!(allTriggers.includes(trigger[trigger.length - 1]))) { %>
+                        <% if ((!trigger[trigger.length - 1]) == "") { %>
                             <div class="my-6">
                                 <p class="form-label text-xl my-3">Custom Trigger</p>
                                 <input type="checkbox" id="<%= trigger[trigger.length - 1] %>" name="triggers"  value="<%= trigger[trigger.length - 1] %>">
