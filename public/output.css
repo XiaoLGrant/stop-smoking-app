@@ -704,6 +704,11 @@ video {
   margin-right: 0.25rem;
 }
 
+.my-3\.5 {
+  margin-top: 0.875rem;
+  margin-bottom: 0.875rem;
+}
+
 .mt-5 {
   margin-top: 1.25rem;
 }
@@ -1037,6 +1042,10 @@ video {
 
 .items-start {
   align-items: flex-start;
+}
+
+.items-end {
+  align-items: flex-end;
 }
 
 .items-center {
