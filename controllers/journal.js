@@ -1,7 +1,7 @@
 const cloudinary = require("../middleware/cloudinary");
 const Streak = require("../models/Streak")
 const Journal = require("../models/Journal")
-const streakControllers = require("../controllers/streak")
+const streakControllers = require("./streak")
 
 // Benefit timetable API (per day)
 const benefits = {
