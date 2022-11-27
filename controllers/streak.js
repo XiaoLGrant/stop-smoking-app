@@ -1,4 +1,3 @@
-const Post = require("../models/Post");
 const Streak = require("../models/Streak")
 const Journal = require("../models/Journal")
 const User = require("../models/User")
