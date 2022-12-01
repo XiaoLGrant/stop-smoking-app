@@ -2,15 +2,15 @@ const express = require("express");
 const router = express.Router();
 const authController = require("../controllers/auth");
 const homeController = require("../controllers/home");
-const postsController = require("../controllers/posts");
+const journalController = require("../controllers/journal");
 const { ensureAuth, ensureGuest } = require("../middleware/auth");
 const passwordResetController = require('../controllers/passwordReset')
 
 //Main Routes - simplified for now
 router.get("/", homeController.getIndex);
 router.get("/about", homeController.getAbout);
-router.get("/profile", ensureAuth, postsController.getProfile);
-router.get("/journal", postsController.getJournal);
+router.get("/profile", ensureAuth, journalController.getProfile);
+router.get("/journal", journalController.getJournal);
 router.get("/relax", homeController.getAnxietyReduce);
 router.get("/login", authController.getLogin);
 router.post("/login", authController.postLogin);
